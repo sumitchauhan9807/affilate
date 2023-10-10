@@ -1,12 +1,50 @@
 import BackgroundImage from '../assets/images/login-back.jpg'
 import MazuLogo from '../assets/images/mazu-logo.png'
-
+import {RECUITER_LOGIN} from 'src/queries'
+import {apolloClient} from 'src/index'
+import React ,{useState,useEffect,useRef} from 'react'
+import Loader from 'src/components/UI/Loader'
+import { useAlert } from 'react-alert'
+import {useDispatch,useSelector} from 'react-redux'
+import {setUserData} from 'src/redux/index'
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
+
+  let username = React.createRef();
+  let password = React.createRef();
+	let [isLoading,setLoading] = useState(false)
+  const alertUser = useAlert()
+	const dispatch = useDispatch()
+  const navigate = useNavigate();
+
+  const doLogin = async () => {
+    try {
+      setLoading(true)
+      let {data} = await apolloClient.mutate({
+        mutation: RECUITER_LOGIN,
+        variables: {
+          username: username.current.value,
+          password: password.current.value
+        },
+      })
+      setLoading(false)
+     if(data.recuiterLogin){ 
+      alertUser.success("Logged in successfully")
+      dispatch(setUserData(data.recuiterLogin.user,data.recuiterLogin.token,data.recuiterLogin.userType))
+      setTimeout(()=>{
+        navigate("/recuiter");
+      },1000)
+     }
+    }catch(e) {
+      setLoading(false)
+      alertUser.error(e.message)
+    }
+  }
+
+
   return (
     <div>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Contact Form Template</title>
+      {isLoading && <Loader/> }
     <div className="lg:flex">
       <div className="lg:w-1/2 xl:max-w-screen-sm">
         <div className="py-12 bg-current lg:bg-white flex justify-center lg:justify-start lg:px-12">
@@ -28,10 +66,10 @@ function Login() {
           <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                 xl:text-bold">Affilate Log in</h2>
           <div className="mt-12">
-            <form>
+            
               <div>
-                <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
-                <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="mike@gmail.com" />
+                <div className="text-sm font-bold text-gray-700 tracking-wide">Username</div>
+                <input ref={username} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="username" />
               </div>
               <div className="mt-8">
                 <div className="flex justify-between items-center">
@@ -45,16 +83,16 @@ function Login() {
                     </a>
                   </div>
                 </div>
-                <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Enter your password" />
+                <input ref={password} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Enter your password" />
               </div>
               <div className="mt-10">
-                <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
+                <button type="button" onClick={doLogin} className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                             font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                             shadow-lg">
                   Log In
                 </button>
               </div>
-            </form>
+          
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
               Don't have an account ? <a className="cursor-pointer text-indigo-600 hover:text-indigo-800">Sign up</a>
             </div>
