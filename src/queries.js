@@ -27,6 +27,18 @@ export const GET_MANAGER_RECUITERS = gql`
     }
   }
 `;
+export const GET_RECUITER_AFFILIATES = gql`
+  query getRecuiterAffiliates {
+    getRecuiterAffiliates{
+      id
+      username
+      email
+    }
+  }
+`;
+
+
+
 
 export const RECUITER_LOGIN = gql`
   mutation recuiterLogin($username: String!, $password: String!) {
