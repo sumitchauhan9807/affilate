@@ -44,7 +44,7 @@ function RouterDashboard() {
   return (
     <div>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
-        <div className="flex flex-col h-screen bg-gray-100">
+        <div className="flex flex-col h-screen bg-gray-100 overflow-x-auto">
           {/* Barra de navegación superior */}
           <div className="bg-white text-white shadow w-full p-2 flex items-center justify-between">
             <div className="flex items-center">
