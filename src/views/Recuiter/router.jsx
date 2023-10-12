@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from 'src/components/UI/Loader'
 import Sidebar from 'src/components/Recuiter/Sidebar'
 import AffiliateLink from 'src/views/Recuiter/AffiliateLink'
+import ViewUserMedia from 'src/views/Recuiter/ViewUserMedia'
 
 
 
@@ -74,7 +75,7 @@ function RouterDashboard() {
               <Routes>
                 <Route exact path ="/recuiter" element= {<Dashboard/>}/>
                 <Route exact path ="/recuiter/affiliate" element= {<AffiliateLink/>}/>
-
+                <Route exact path ="/recuiter/usermedia/:id" element= {<ViewUserMedia/>}/>
             </Routes>
         </div>
         {/* Script para las gráficas */}

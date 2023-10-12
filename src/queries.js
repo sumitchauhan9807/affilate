@@ -27,18 +27,52 @@ export const GET_MANAGER_RECUITERS = gql`
     }
   }
 `;
-export const GET_RECUITER_AFFILIATES = gql`
-  query getRecuiterAffiliates {
-    getRecuiterAffiliates{
-      id
-      username
-      email
+
+export const GET_ACTOR_MEDIA_RECUITER = gql`
+  query getActorMedia($id: String!) {
+    getActorMedia(id: $id) {
+      mediaGallery {
+        id
+        name
+        media {
+          url
+          mediaCategory
+          format
+          cloudUrl
+        }
+      }
+      user{
+        username
+      }
     }
   }
 `;
-
-
-
+export const GET_RECUITER_AFFILIATES = gql`
+  query getRecuiterAffiliates {
+    getRecuiterAffiliates {
+      id
+      profilePic
+      username
+      email
+      usrType
+      profileSetupStep
+      profileComplete
+      photos {
+        id
+        image
+        unsafe
+      }
+      base_profile {
+        id
+        firstName
+        lastName
+      }
+      user_basic {
+        location
+      }
+    }
+  }
+`;
 
 export const RECUITER_LOGIN = gql`
   mutation recuiterLogin($username: String!, $password: String!) {
