@@ -66,9 +66,11 @@ export const GET_RECUITER_AFFILIATES = gql`
         id
         firstName
         lastName
+        phone
       }
       user_basic {
         location
+        skype
       }
     }
   }

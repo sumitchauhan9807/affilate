@@ -41,6 +41,9 @@ function AffiliatesList() {
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Full Name</th>
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Username</th>
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Email</th>
+        <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Skype</th>
+        <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Phonenumber</th>
+
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Profile Complete</th>
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">View Submitted Media</th>
       </tr>
@@ -54,6 +57,9 @@ function AffiliatesList() {
 
             <td className="text-center py-2 px-4 border-b border-grey-light">{aff.username}</td>
             <td className="text-center py-2 px-4 border-b border-grey-light">{aff.email}</td>
+            <td className="text-center py-2 px-4 border-b border-grey-light">{aff.user_basic ? aff.user_basic.skype : ""}</td>
+            <td className="text-center py-2 px-4 border-b border-grey-light">{aff.base_profile.phone}</td>
+
             <td className="text-center py-2 px-4 border-b border-grey-light">
               <center>
                 {aff.profileComplete ? <CheckBadgeIcon style={{color:"green"}}  className="h-8 w-8"/> :<XCircleIcon style={{color:"red"}}  className="h-8 w-8"/>}
