@@ -1,39 +1,12 @@
-import { useEffect, useState } from "react"
-import {apolloClient} from 'src/index'
-import {GET_RECUITER_AFFILIATES} from 'src/queries'
-import {getUrlFT} from 'src/helpers'
-import Loader from 'src/components/UI/Loader'
 import {
- XCircleIcon,
- CheckBadgeIcon
-} from "@heroicons/react/24/outline";
+  XCircleIcon,
+  CheckBadgeIcon
+ } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom"
-function AffiliatesList() {
+import {getUrlFT} from 'src/helpers'
 
-  let [affiliates,setAffiliates] = useState([])
-  const [isLoading,setLoading] = useState(false)
-
-  useEffect(()=>{
-    (async ()=>{
-      try {
-        setLoading(true)
-        let {data} = await apolloClient.query({
-          query: GET_RECUITER_AFFILIATES,
-          fetchPolicy: "no-cache" 
-        })
-        setLoading(false)
-        if(data.getRecuiterAffiliates){
-          setAffiliates(data.getRecuiterAffiliates)
-        }
-      }catch(e) {
-        setLoading(false)
-        alert(e.message)
-      }
-    })()
-  },[])
+function AffiliatesList({affiliates,submittedMediaUrl}) {
   return (
-    <>
-    {isLoading && <Loader/>}
     <table className="w-full table-auto text-sm">
     <thead>
       <tr className="text-sm leading-normal">
@@ -66,7 +39,7 @@ function AffiliatesList() {
               </center>
             </td>
             <td className="text-center py-2 px-4 border-b border-grey-light">
-              <Link to={`/recuiter/usermedia/${aff.id}`} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
+              <Link to={`${submittedMediaUrl}/${aff.id}`} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
                 Media
               </Link>
             </td>
@@ -75,9 +48,7 @@ function AffiliatesList() {
       })}
     </tbody>
   </table>
-  </>
   )
 }
+
 export default AffiliatesList
-
-

@@ -1,6 +1,6 @@
 import BackgroundImage from '../assets/images/login-back.jpg'
 import MazuLogo from '../assets/images/mazu-logo.png'
-import {RECUITER_LOGIN} from 'src/queries'
+import {RECUITER_LOGIN,MANAGER_LOGIN} from 'src/queries'
 import {apolloClient} from 'src/index'
 import React ,{useState,useEffect,useRef} from 'react'
 import Loader from 'src/components/UI/Loader'
@@ -12,6 +12,8 @@ function Login() {
 
   let username = React.createRef();
   let password = React.createRef();
+  let role = React.createRef();
+
 	let [isLoading,setLoading] = useState(false)
   const alertUser = useAlert()
 	const dispatch = useDispatch()
@@ -19,22 +21,42 @@ function Login() {
 
   const doLogin = async () => {
     try {
+      if(role.current.value == '') return alertUser.error('Please select a role')
       setLoading(true)
-      let {data} = await apolloClient.mutate({
-        mutation: RECUITER_LOGIN,
-        variables: {
-          username: username.current.value,
-          password: password.current.value
-        },
-      })
-      setLoading(false)
-     if(data.recuiterLogin){ 
-      alertUser.success("Logged in successfully")
-      dispatch(setUserData(data.recuiterLogin.user,data.recuiterLogin.token,data.recuiterLogin.userType))
-      setTimeout(()=>{
-        navigate("/recuiter");
-      },1000)
-     }
+      if(role.current.value == 'recuiter') {
+        let {data} = await apolloClient.mutate({
+          mutation: RECUITER_LOGIN,
+          variables: {
+            username: username.current.value,
+            password: password.current.value
+          },
+        })
+        setLoading(false)
+       if(data.recuiterLogin){ 
+        alertUser.success("Logged in successfully")
+        dispatch(setUserData(data.recuiterLogin.user,data.recuiterLogin.token,data.recuiterLogin.userType))
+        setTimeout(()=>{
+          navigate("/recuiter");
+        },1000)
+       }
+      }else if(role.current.value == 'manager') {
+        let {data} = await apolloClient.mutate({
+          mutation: MANAGER_LOGIN,
+          variables: {
+            username: username.current.value,
+            password: password.current.value
+          },
+        })
+        setLoading(false)
+       if(data.managerLogin){ 
+        alertUser.success("Logged in successfully")
+        dispatch(setUserData(data.managerLogin.user,data.managerLogin.token,data.managerLogin.userType))
+        setTimeout(()=>{
+          navigate("/manager");
+        },1000)
+       }
+      }
+      
     }catch(e) {
       setLoading(false)
       alertUser.error(e.message)
@@ -76,14 +98,19 @@ function Login() {
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Password
                   </div>
-                  <div>
-                    <a className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
-                                    cursor-pointer">
-                      Forgot Password?
-                    </a>
-                  </div>
                 </div>
                 <input ref={password} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type placeholder="Enter your password" />
+              </div>
+              <div class="mt-8">
+                <div className="text-sm font-bold text-gray-700 tracking-wide">Role</div>
+                <select ref={role} class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500 bg-white">
+                    <option value="">select role</option>
+                    <option value="manager">Manager</option>
+                    <option value="recuiter">Recuiter</option>
+                    {/* <option>sdsd</option>
+                    <option>sdsd</option> */}
+
+                </select>
               </div>
               <div className="mt-10">
                 <button type="button" onClick={doLogin} className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide

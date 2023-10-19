@@ -1,6 +1,7 @@
 // import Model from './Model/router'
 // import Website from './website/router'
 import Recuiter from 'src/views/Recuiter/router'
+import Manager from 'src/views/Manager/router'
 import Login from 'src/views/Login'
 import { useHistory ,useLocation } from 'react-router-dom';
 import React, { useEffect ,useRef,useState,lazy,Suspense} from 'react'
@@ -12,8 +13,11 @@ function IndexWeb() {
 const location = useLocation()
   let currentPath = location.pathname
   let isRecuiter = currentPath.includes('recuiter')
-  let isWebsite = !isRecuiter 
+  let isManager = currentPath.includes('manager')
+  let isWebsite = !isRecuiter  && !isManager
 
+
+  console.log(isManager,"isManager")
   // let isAdmin =  currentPath.includes('admin')
   // let isWebsite = !isDashboard && !isAdmin
   
@@ -22,6 +26,7 @@ const location = useLocation()
     <React.Fragment>
       {isRecuiter && <Recuiter/>}
       {isWebsite && <Login/>}
+      {isManager && <Manager/>}
     </React.Fragment>
   )
 }

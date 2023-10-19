@@ -28,6 +28,17 @@ export const GET_MANAGER_RECUITERS = gql`
   }
 `;
 
+export const GET_MANAGER_RECUITERS_MANAGER = gql`
+  query getManagerRecuitersManager {
+    getManagerRecuitersManager {
+      id
+      username
+      name
+      email
+    }
+  }
+`;
+
 export const GET_ACTOR_MEDIA_RECUITER = gql`
   query getActorMedia($id: String!) {
     getActorMedia(id: $id) {
@@ -41,7 +52,27 @@ export const GET_ACTOR_MEDIA_RECUITER = gql`
           cloudUrl
         }
       }
-      user{
+      user {
+        username
+      }
+    }
+  }
+`;
+
+export const GET_ACTOR_MEDIA_MANAGER = gql`
+  query getActorMediaManager($id: String!) {
+    getActorMediaManager(id: $id) {
+      mediaGallery {
+        id
+        name
+        media {
+          url
+          mediaCategory
+          format
+          cloudUrl
+        }
+      }
+      user {
         username
       }
     }
@@ -75,10 +106,54 @@ export const GET_RECUITER_AFFILIATES = gql`
     }
   }
 `;
+export const GET_RECUITER_AFFILIATES_MANAGER = gql`
+  query getRecuiterAffiliatesManager($id: String!) {
+    getRecuiterAffiliatesManager(id: $id) {
+      affiliates {
+        id
+        profilePic
+        username
+        email
+        usrType
+        profileSetupStep
+        profileComplete
+        photos {
+          id
+          image
+          unsafe
+        }
+        base_profile {
+          id
+          firstName
+          lastName
+          phone
+        }
+        user_basic {
+          location
+          skype
+        }
+      }
+    }
+  }
+`;
 
 export const RECUITER_LOGIN = gql`
   mutation recuiterLogin($username: String!, $password: String!) {
     recuiterLogin(username: $username, password: $password) {
+      user {
+        id
+        username
+        email
+      }
+      token
+      userType
+    }
+  }
+`;
+
+export const MANAGER_LOGIN = gql`
+  mutation managerLogin($username: String!, $password: String!) {
+    managerLogin(username: $username, password: $password) {
       user {
         id
         username
