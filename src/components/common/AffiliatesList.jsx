@@ -5,7 +5,7 @@ import {
 import { Link } from "react-router-dom"
 import {getUrlFT} from 'src/helpers'
 
-function AffiliatesList({affiliates,submittedMediaUrl}) {
+function AffiliatesList({affiliates,submittedMediaUrl,stripchatEarningsUrl,stripchatPayoutUrl}) {
   return (
     <table className="w-full table-auto text-sm">
     <thead>
@@ -19,6 +19,8 @@ function AffiliatesList({affiliates,submittedMediaUrl}) {
 
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Profile Complete</th>
         <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">View Submitted Media</th>
+        <th className="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">Stripchat Statistics</th>
+
       </tr>
     </thead>
     <tbody>
@@ -41,6 +43,14 @@ function AffiliatesList({affiliates,submittedMediaUrl}) {
             <td className="text-center py-2 px-4 border-b border-grey-light">
               <Link to={`${submittedMediaUrl}/${aff.id}`} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
                 Media
+              </Link>
+            </td>
+            <td className="text-center py-2 px-4 border-b border-grey-light">
+              <Link to={`${stripchatEarningsUrl}/${aff.id}`} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded">
+                Earnings
+              </Link>
+              <Link to={`${stripchatPayoutUrl}/${aff.id}`} className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded ml-2">
+                Payouts
               </Link>
             </td>
           </tr>

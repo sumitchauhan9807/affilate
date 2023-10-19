@@ -44,6 +44,8 @@ function RecuiterAffiliates() {
          <AffiliatesList
            affiliates={affiliates.affiliates}
            submittedMediaUrl='/manager/affiliatesmedia'
+           stripchatEarningsUrl='/manager/stripchatEarnings'
+           stripchatPayoutUrl='/manager/stripchatPayouts'
          />
         </div>
      

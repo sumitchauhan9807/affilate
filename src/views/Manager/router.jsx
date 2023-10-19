@@ -9,6 +9,9 @@ import Dashboard from 'src/views/Manager/Dashboard'
 import Recuiters from 'src/views/Manager/Recuiters'
 import RecuiterAffiliates from 'src/views/Manager/RecuiterAffilates'
 import ViewUserMedia from 'src/views/Manager/ViewUserMedia'
+import ActorStripchatEarnings from 'src/views/Manager/ActorStripchatEarnings'
+import ActorStripchatPayouts from 'src/views/Manager/ActorStripchatPayouts'
+
 
 
 function RouterDashboard() {
@@ -68,6 +71,10 @@ function RouterDashboard() {
                 <Route exact path ="/manager/recuites" element= {<Recuiters/>}/>
                 <Route exact path ="/manager/recuites/affiliates/:id" element= {<RecuiterAffiliates/>}/>
                 <Route exact path ="/manager/affiliatesmedia/:id" element= {<ViewUserMedia/>}/>
+                <Route exact path ="/manager/stripchatEarnings/:id" element= {<ActorStripchatEarnings/>}/>
+                <Route exact path ="/manager/stripchatPayouts/:id" element= {<ActorStripchatPayouts/>}/>
+
+
 
 
 

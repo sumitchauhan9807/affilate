@@ -164,3 +164,47 @@ export const MANAGER_LOGIN = gql`
     }
   }
 `;
+
+export const STRIP_CHAT_DATA = gql`
+  query stripChatAPI($id: String!) {
+    stripChatData(id: $id) {
+      earnings {
+        id
+        startDate
+        endDate
+        totalEarnings
+        isPaid
+      }
+      actor {
+        username
+      }
+    }
+  }
+`;
+
+export const STRIPCHAT_PAYOUTS = gql`
+  query actorStripchatPayouts($id: String!) {
+    actorStripchatPayouts(id: $id) {
+      actor {
+        username
+      }
+      payouts {
+        id
+        amount
+        managerShare
+        companyShare
+        actorShare
+        actor {
+          username
+        }
+        recuiter {
+          username
+        }
+        manager {
+          username
+        }
+        recuiterShare
+      }
+    }
+  }
+`;
