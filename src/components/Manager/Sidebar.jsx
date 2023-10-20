@@ -26,11 +26,14 @@ function Sidebar() {
     <div className="p-2 bg-white w-60 flex flex-col hidden md:flex" id="sideNav">
       {loading  && <Loader/>}
     <nav>
-      <Link to="/manager" className={`block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white ${pathname == '/recuiter' && 'bg-cyan-400 text-white'}`}>
+      <Link to="/manager" className={`block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white ${pathname == '/manager' && 'bg-cyan-400 text-white'}`}>
         <i className="fas fa-home mr-2" />Dashboard
       </Link>
-       <Link to="/manager/recuites" className={`block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white ${pathname == '/recuiter/affiliate' && 'bg-cyan-400 text-white'}`}>
+       <Link to="/manager/recuites" className={`block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white ${pathname == '/manager/recuites' && 'bg-cyan-400 text-white'}`}>
         <i className="fas fa-file-alt mr-2" />Recuiters
+      </Link>
+      <Link to="/manager/earnings" className={`block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white ${pathname == '/manager/earnings' && 'bg-cyan-400 text-white'}`}>
+        <i className="fas fa-file-alt mr-2" />Earnings
       </Link>
       {/* <a className="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white" href="#">
         <i className="fas fa-users mr-2" />Usuarios

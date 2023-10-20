@@ -166,8 +166,8 @@ export const MANAGER_LOGIN = gql`
 `;
 
 export const STRIP_CHAT_DATA = gql`
-  query stripChatAPI($id: String!) {
-    stripChatData(id: $id) {
+  query stripChatAPI($id: String!,$start:String,$end:String) {
+    stripChatData(id: $id,start:$start,end:$end) {
       earnings {
         id
         startDate
@@ -204,6 +204,25 @@ export const STRIPCHAT_PAYOUTS = gql`
           username
         }
         recuiterShare
+      }
+    }
+  }
+`;
+
+export const GET_MANAGER_EARNIGS = gql`
+  query getManagerEarnings {
+    getManagerEarnings {
+      id
+      actorShare
+      managerShare
+      companyShare
+      amount
+      recuiterShare
+      recuiter {
+        username
+      }
+      actor {
+        username
       }
     }
   }

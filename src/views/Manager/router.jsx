@@ -11,6 +11,8 @@ import RecuiterAffiliates from 'src/views/Manager/RecuiterAffilates'
 import ViewUserMedia from 'src/views/Manager/ViewUserMedia'
 import ActorStripchatEarnings from 'src/views/Manager/ActorStripchatEarnings'
 import ActorStripchatPayouts from 'src/views/Manager/ActorStripchatPayouts'
+import ManagerEarnings from 'src/views/Manager/ManagerEarnings'
+
 
 
 
@@ -73,6 +75,8 @@ function RouterDashboard() {
                 <Route exact path ="/manager/affiliatesmedia/:id" element= {<ViewUserMedia/>}/>
                 <Route exact path ="/manager/stripchatEarnings/:id" element= {<ActorStripchatEarnings/>}/>
                 <Route exact path ="/manager/stripchatPayouts/:id" element= {<ActorStripchatPayouts/>}/>
+                <Route exact path ="/manager/earnings" element= {<ManagerEarnings/>}/>
+
 
 
 

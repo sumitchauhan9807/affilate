@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
 
 function RecuitrsList({recuiters}) {
-  console.log(recuiters)
-  
   return (
     <table className="w-full table-auto text-sm">
     <thead>
